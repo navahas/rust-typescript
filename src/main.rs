@@ -1,8 +1,14 @@
-fn main() {
-    let foo: Vec<_> = vec![1, 2, 3]
-        .iter()
-        .map(|x| x + 1)
-        .collect();
+#[derive(Debug)]
+struct Item{
+    count: usize
+}
 
-    println!("{:?}", foo);
+fn add_one(item: &mut Item) {
+    item.count += 1;
+}
+
+fn main() {
+    let mut item = Item { count: 1 };
+    add_one(&mut item);
+    println!("{:?}", item)
 }
