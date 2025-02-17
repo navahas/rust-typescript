@@ -1,4 +1,28 @@
+interface Area {
+    area(): number
+}
 
-const foo = [1, 2, 3].map(x => x + 1);
+class Rectangle implements Area{
+    constructor(
+        public x: number,
+        public y: number,
+        public width: number,
+        public height: number,
+    ) {}
 
-console.log(foo);
+    area(): number {
+        return this.width * this.height;
+    }
+}
+
+class Circle implements Area {
+    constructor(
+        public x: number,
+        public y: number,
+        public radius: number,
+    ) {}
+
+    area(): number {
+        return this.radius * this.radius * Math.PI;
+    }
+}
