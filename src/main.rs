@@ -1,17 +1,7 @@
+mod shape;
 use std::f64::consts::PI;
 
-struct Rectangle {
-    height: f64,
-    width: f64,
-    x: f64,
-    y: f64
-}
-
-struct Circle {
-    radius: f64,
-    x: f64,
-    y: f64
-}
+use shape::{Circle, Rectangle};
 
 trait Area {
     fn area(&self) -> f64;
