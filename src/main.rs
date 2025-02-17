@@ -13,33 +13,36 @@ struct Circle {
     y: f64
 }
 
-impl Rectangle {
-    fn new(height: f64, width: f64, x: f64, y: f64) -> Self {
-        Self { height, width, x, y }
-    }
-    
+trait Area {
+    fn area(&self) -> f64;
+}
+
+impl Area for Rectangle {
     fn area(&self) -> f64 {
-        let area = self.height * self.width;
-        return area;
+        return self.width * self.height;
     }
 }
 
-impl Circle {
-    fn new(radius: f64, x: f64, y: f64) -> Self {
-        Self { radius, x, y }
-    }
-    
+impl Area for Circle {
     fn area(&self) -> f64 {
-        return self.radius * PI;
+        return self.radius * self.radius * PI;
     }
 }
 
 fn main() {
-    let rectangle = Rectangle::new(5.0, 10.0, 0.0, 0.0);
-    let area = rectangle.area();
-    println!("{}", area);
+    let rectangle = Rectangle {
+        height: 10.0,
+        width: 10.0,
+        x: 0.0,
+        y: 0.0,
+    };
 
-    let circle = Circle::new(12.0, 0.0, 0.0);
-    let area_circle = circle.area();
-    println!("{}", area_circle);
+    let circle = Circle {
+        radius: 10.0,
+        x: 0.0,
+        y: 0.0
+    };
+
+    println!("{}", rectangle.area());
+    println!("{}", circle.area());
 }
