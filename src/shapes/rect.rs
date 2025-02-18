@@ -69,3 +69,21 @@ impl IntoIterator for Rectangle {
         }
     }
 }
+
+impl IntoIterator for &Rectangle {
+    type Item = (f64, f64);
+
+    type IntoIter = RectIter;
+
+    fn into_iter(self) -> Self::IntoIter {
+        return RectIter {
+            points: vec![
+                (self.x, self.y),
+                (self.x + self.width, self.y),
+                (self.x, self.y + self.height),
+                (self.x + self.width, self.y + self.height)
+            ],
+            idx: 0,
+        }
+    }
+}

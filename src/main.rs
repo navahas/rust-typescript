@@ -5,7 +5,8 @@ mod shapes;
 fn main() {
     let rectangle = Rectangle::default();
 
-    let circle = Circle::default();
+    for point in &rectangle = {
+    }
 
     println!("{}", rectangle);
 }
