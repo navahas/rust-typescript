@@ -13,6 +13,10 @@ class Rectangle implements Area{
     area(): number {
         return this.width * this.height;
     }
+
+    toString() {
+        return `Rectangle(${this.x}, ${this.y}): ${this.width}x${this.height}`;
+    }
 }
 
 class Circle implements Area {
@@ -26,3 +30,5 @@ class Circle implements Area {
         return this.radius * this.radius * Math.PI;
     }
 }
+
+console.log(`${new Rectangle(0, 0, 10, 10)}`);

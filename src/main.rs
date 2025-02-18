@@ -1,48 +1,11 @@
-use std::f64::consts::PI;
+use shapes::{area::Area, circle::Circle, rect::Rectangle};
 
-struct Rectangle {
-    height: f64,
-    width: f64,
-    x: f64,
-    y: f64
-}
-
-struct Circle {
-    radius: f64,
-    x: f64,
-    y: f64
-}
-
-trait Area {
-    fn area(&self) -> f64;
-}
-
-impl Area for Rectangle {
-    fn area(&self) -> f64 {
-        return self.width * self.height;
-    }
-}
-
-impl Area for Circle {
-    fn area(&self) -> f64 {
-        return self.radius * self.radius * PI;
-    }
-}
+mod shapes;
 
 fn main() {
-    let rectangle = Rectangle {
-        height: 10.0,
-        width: 10.0,
-        x: 0.0,
-        y: 0.0,
-    };
+    let rectangle = Rectangle::default();
 
-    let circle = Circle {
-        radius: 10.0,
-        x: 0.0,
-        y: 0.0
-    };
+    let circle = Circle::default();
 
-    println!("{}", rectangle.area());
-    println!("{}", circle.area());
+    println!("{}", rectangle);
 }
