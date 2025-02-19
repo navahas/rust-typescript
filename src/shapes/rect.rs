@@ -33,22 +33,21 @@ impl Display for Rectangle {
 }
 
 pub struct RectIter {
-    points: Vec<(f64, f64)>,
+    points: [(f64, f64); 4],
     idx: usize
 }
 
-impl Iterator for RectIter {
-    type Item = (f64, f64);
-
-    fn next(&mut self) -> Option<Self::Item> {
-        if self.idx >= self.points.len() {
-            return None;
+impl From<&Rectangle> for RectIter {
+    fn from(rect: &Rectangle) -> Self {
+        return RectIter {
+            points: vec![
+                (rect.x, rect.y),
+                (rect.x + rect.width, rect.y),
+                (rect.x, rect.y + rect.height),
+                (rect.x + rect.width, rect.y + rect.height),
+            ],
+            idx: 0,
         }
-
-        let point = self.points[self.idx];
-        self.idx += 1;
-
-        return Some(point);
     }
 }
 
@@ -58,15 +57,7 @@ impl IntoIterator for Rectangle {
     type IntoIter = RectIter;
 
     fn into_iter(self) -> Self::IntoIter {
-        return RectIter {
-            points: vec![
-                (self.x, self.y),
-                (self.x + self.width, self.y),
-                (self.x, self.y + self.height),
-                (self.x + self.width, self.y + self.height)
-            ],
-            idx: 0,
-        }
+        return (&self).into();
     }
 }
 
@@ -76,14 +67,6 @@ impl IntoIterator for &Rectangle {
     type IntoIter = RectIter;
 
     fn into_iter(self) -> Self::IntoIter {
-        return RectIter {
-            points: vec![
-                (self.x, self.y),
-                (self.x + self.width, self.y),
-                (self.x, self.y + self.height),
-                (self.x + self.width, self.y + self.height)
-            ],
-            idx: 0,
-        }
+        return self.into();
     }
 }
